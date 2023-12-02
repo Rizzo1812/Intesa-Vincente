@@ -11,6 +11,7 @@ var audio_correct_answer_path = '/audio/correct_answer.mp3';
 var audio_wrong_answer_path = '/audio/wrong_answer.mp3';
 var audio_prenotation_path = '/audio/prenotazione.mp3';
 var audio_word_change_path = '/audio/word_change.mp3';
+var audio_timer_change = '/audio/timer_change.wav';
 
 function init( socket, roomId, privilege, player_name, permissions ) {
     _roomId = roomId;
@@ -58,7 +59,7 @@ function startSwalPrenotation( isRispostaPrenotata = true ) {
     Swal.fire({
         title: isRispostaPrenotata ? 'Risposta prenotata!' : "Passo usato!",
         html: isRispostaPrenotata ? 'Sono rimasti <b></b> secondi per rispondere.' : 'I giocatori hanno usato un "PASSO". Fra <b></b> secondi sparirà questo popup.',
-        timer: 5000,
+        timer: 3000,
         timerProgressBar: true,
         allowOutsideClick: false,
         didOpen: () => {
@@ -205,6 +206,7 @@ function handle_on_updated_time() {
     socket.on("updated-time", function (data) {
         console.log("[Socket.IO] updated-time", data);
         update_timer( data.time );
+        playAudio(audio_timer_change);
         createToast('Il timer è stato aggiornato!', 'info' );
     });
 }

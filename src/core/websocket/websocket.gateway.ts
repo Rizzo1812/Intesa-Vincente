@@ -238,13 +238,30 @@ export class WebsocketGateway implements OnGatewayInit<Server>, OnGatewayConnect
     const method = payload.method;
     const room_timer = this.rooms_timers.get(payload.roomId);
     const room_stats = this.rooms_stats.get(payload.roomId);
-    if( method === 'add' ) {
-      room_timer.remaining_seconds += 5;
-      room_stats.secondi_rimanenti += 5;
-    }
-    else if( method === 'sub' ) {
-      room_timer.remaining_seconds -= 5;
-      room_stats.secondi_rimanenti -= 5;
+    switch (method) {
+      case 'add5':
+        room_timer.remaining_seconds += 5;
+        room_stats.secondi_rimanenti += 5;
+        break;
+      case 'add1':
+        room_timer.remaining_seconds += 1;
+        room_stats.secondi_rimanenti += 1;
+        break;
+      case 'sub5':
+        room_timer.remaining_seconds -= 5;
+        room_stats.secondi_rimanenti -= 5;
+        if(room_timer.remaining_seconds<=0) {
+          room_timer.remaining_seconds = 0;
+          room_stats.secondi_rimanenti = 0;
+        }
+        break;
+      case 'sub1':
+        room_timer.remaining_seconds -= 1;
+        room_stats.secondi_rimanenti -= 1;
+        if(room_timer.remaining_seconds<=0) {
+          room_timer.remaining_seconds = 0;
+          room_stats.secondi_rimanenti = 0;
+        }
     }
   
     this.server.to(payload.roomId).emit('updated-time', {

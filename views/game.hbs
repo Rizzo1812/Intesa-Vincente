@@ -32,10 +32,12 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css
         <h1 id="timer" class="display-4">01:15</h1>
         <div class="d-flex justify-content-center align-items-center">
           {{#ifCond this.view_add_score "===" true }}
-            <button id="sottrai" class="btn btn-danger btn-lg me-2" onclick="updateTime('sub')">-5 sec</button>
+            <button id="sottrai5" class="btn btn-danger btn-lg me-2" onclick="updateTime('sub5')">-5 sec</button>
+            <button id="sottrai1" class="btn btn-danger btn-lg me-2" onclick="updateTime('sub1')">-1 sec</button>
           {{/ifCond}}
           {{#ifCond this.view_remove_score "===" true }}
-            <button id="aggiungi" class="btn btn-success btn-lg" onclick="updateTime('add')">+5 sec</button>
+            <button id="aggiungi" class="btn btn-success btn-lg me-2" onclick="updateTime('add1')">+1 sec</button>
+            <button id="aggiungi" class="btn btn-success btn-lg me-2" onclick="updateTime('add5')">+5 sec</button>
           {{/ifCond}}
         </div>
       </div>
