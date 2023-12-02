@@ -2,12 +2,7 @@ import * as fs from 'fs';
 import { join } from 'path';
 export class WordsSingleton {
     public static words: string[] = [
-      "violino",
-      "pianoforte",
-      "tastiera",
-      "chitarra",
-      "batteria",
-      "tromba",
+      "error loading words"
     ];
     
     public static GetWordsSet( number: number ): void {

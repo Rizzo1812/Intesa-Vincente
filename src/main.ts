@@ -22,7 +22,7 @@ async function bootstrap() {
     app.useGlobalPipes(new ValidationPipe())
     app.enableCors();
     
-    WordsSingleton.GetWordsSet(2);
+    WordsSingleton.GetWordsSet(1);
     
     const peerServerService = app.get(PeerServerService);
     peerServerService.enablePeerServer(app);
